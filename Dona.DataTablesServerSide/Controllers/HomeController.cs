@@ -25,7 +25,10 @@ namespace Dona.DataTablesServerSide.Controllers
 
         public JsonResult BuscaAssincrona(JQueryDataTablesParamViewModel Params)
         {
+            //para informar ao datatables quantos registros existem AO TOTAL
             int TotalPessoas = 0;
+
+            //para informar ao datatables quantos registros existem com o filtro aplicado
             int TotalPessoasFiltradas = 0;
 
             List<ListarPessoaViewModel> Pessoas = _servico.PegarPessoas(Params, out TotalPessoas, out TotalPessoasFiltradas);

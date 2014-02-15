@@ -1,17 +1,26 @@
 ﻿using Dona.DataTablesServerSide.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
 namespace Dona.DataTablesServerSide.DAL
 {
-    public class StubDB
+    public class StubDB : DbContext
     {
-        public ICollection<Pessoa> Pessoas { get; set; }
-        public ICollection<Emprego> Empregos { get; set; }
+        public DbSet<Pessoa> Pessoas { get; set; }
+        public DbSet<Emprego> Empregos { get; set; }
 
-        public StubDB()
+        public StubDB() : base("ConexaoPadrao")
+        {
+            Database.SetInitializer(new Inicializador());
+        }
+    }
+
+    public class Inicializador: DropCreateDatabaseAlways<StubDB>
+    {
+        protected override void Seed(StubDB context)
         {
             #region Preenchendo os dados... =(
             List<Emprego> Empregos = new List<Emprego>()
@@ -52,11 +61,15 @@ namespace Dona.DataTablesServerSide.DAL
                 new Pessoa { Id = 22, Nome = "Jéssica Carvalho", Emprego = Empregos[2], DtAniversario = new DateTime(1988, 2, 15)},
                 new Pessoa { Id = 23, Nome = "Minion Atrevido", Emprego = Empregos[5], DtAniversario = new DateTime(1978, 8, 19)},
                 new Pessoa { Id = 24, Nome = "Jéssica Tarvos", Emprego = Empregos[1], DtAniversario = new DateTime(1990, 9, 11)}
-            }; 
+            };
             #endregion
 
-            this.Empregos = Empregos;
-            this.Pessoas = Pessoas;
+            context.Empregos.AddRange(Empregos);
+            context.Pessoas.AddRange(Pessoas);
+
+            context.SaveChanges();
+
+            base.Seed(context);
         }
     }
 }

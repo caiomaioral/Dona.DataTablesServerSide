@@ -11,5 +11,6 @@ namespace Dona.DataTablesServerSide.Models
         public string Nome { get; set; }
         public DateTime DtAniversario { get; set; }
         public Emprego Emprego { get; set; }
+        public int EmpregoId { get; set; }
     }
 }
