@@ -45,5 +45,15 @@ namespace Dona.DataTablesServerSide.ViewModel.DataTables
         /// Comma separated list of column names
         /// </summary>
         public string sColumns { get; set; }
+
+        /// <summary>
+        /// Which column is ordering the result
+        /// </summary>
+        public int iSortCol_0 { get; set; }
+
+        /// <summary>
+        /// Is the sort ASC or DESC?
+        /// </summary>
+        public string sSortDir_0 { get; set; }
     }
 }

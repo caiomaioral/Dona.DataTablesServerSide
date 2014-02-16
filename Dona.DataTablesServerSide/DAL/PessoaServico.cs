@@ -60,10 +60,11 @@ namespace Dona.DataTablesServerSide.DAL
             TotalPessoasFiltradas = Pessoas.Count();
 
             //fazendo a ordenação pelo que foi informado na interface
-            Pessoas = Pessoas.OrderBy(x => x.Id);
+            string ColunaOrdenada = Params.sColumns.Split(',')[Params.iSortCol_0];
+            Pessoas = Pessoas.OrderBy(ColunaOrdenada + " " + Params.sSortDir_0);
 
             //pegando apenas os resultados relativos a página atual
-            Pessoas = Pessoas.Take(Params.iDisplayLength).Skip(Params.iDisplayStart);
+            Pessoas = Pessoas.Skip(Params.iDisplayStart).Take(Params.iDisplayLength);
 
             //fazendo a query e retornando a viewmodel...
             return Pessoas.Select(x => new ListarPessoaViewModel() 
