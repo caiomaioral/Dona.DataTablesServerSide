@@ -48,6 +48,11 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+
+    <script>
+        Globalize.culture('pt-BR');
+    </script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

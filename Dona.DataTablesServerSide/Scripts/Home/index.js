@@ -12,7 +12,12 @@
                 },
                 {
                     "sName": "DtAniversario",
-                    "mData": "DtAniversario"
+                    "mData": "DtAniversario",
+                    "mRender" : function(val, type)
+                    {
+                        var bDay = new Date(parseInt(val.substr(6)));
+                        return Globalize.format(bDay, "dd/MM/yyyy");
+                    }
                 },
                 {
                     "sName": "Emprego.Nome",
@@ -20,7 +25,11 @@
                 },
                 {
                     "sName": "Emprego.Salario",
-                    "mData": "EmpregoSalario"
+                    "mData": "EmpregoSalario",
+                    "mRender": function(val)
+                    {
+                        return Globalize.format(val, "C");
+                    }
                 }
             ]
     });

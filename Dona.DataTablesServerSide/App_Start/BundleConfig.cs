@@ -10,7 +10,9 @@ namespace Dona.DataTablesServerSide
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/jquery.dataTables.min.js"
+                        "~/Scripts/jquery.dataTables.min.js",
+                        "~/Scripts/globalize/globalize.js",
+                        "~/Scripts/globalize/cultures/globalize.culture.pt-BR.js"
             ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
