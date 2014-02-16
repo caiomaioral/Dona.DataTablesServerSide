@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 
@@ -16,9 +17,14 @@ namespace Dona.DataTablesServerSide.DAL
         {
             Database.SetInitializer(new Inicializador());
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 
-    public class Inicializador: DropCreateDatabaseAlways<StubDB>
+    public class Inicializador: DropCreateDatabaseIfModelChanges<StubDB>
     {
         protected override void Seed(StubDB context)
         {
